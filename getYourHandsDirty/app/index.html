@@ -6,7 +6,8 @@
     </head>
     <body>
         <!-- mount point -->
-        <hello-world></hello-world>
+        <div id="hello"></div>
+        <div id="bonjour"></div>
 
         <!-- include riot.js -->
         <script src="../node_modules/riot/riot.min.js"></script>
@@ -15,7 +16,16 @@
 
         <!-- mount normally -->
         <script>
-            riot.mount('*', { title: 'Say hello!'});
+            var sayHello = function(name) {
+                return 'Hello ' + name + '!!!';
+            };
+
+            var sayBonjour = function(name) {
+                return 'Bonjour ' + name + '!!!';
+            };
+
+            riot.mount('div#hello', 'hello-world', { title: 'Hello', say: sayHello });
+            riot.mount('div#bonjour', 'hello-world', { title: 'Bonjour', say: sayBonjour });
         </script>
     </body>
 </html>
