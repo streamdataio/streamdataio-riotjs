@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Hello World</title>
+    </head>
+    <body>
+        <!-- mount point -->
+        <hello-world></hello-world>
+        <inlined-tag></inlined-tag>
+
+        <!-- inlined tag definition -->
+        <script type="riot/tag">
+            <inlined-tag>
+                <p>This is an inlined tag</p>
+
+                <!-- you can define several tags in the same file -->
+                <todo />
+
+            </inlined-tag>
+        </script>
+
+        <script src="./hello-world.tag" type="riot/tag"></script>
+
+        <!-- include riot.js and the compiler -->
+        <script src="https://cdn.jsdelivr.net/riot/3.0/riot+compiler.min.js"></script>
+
+        <!-- mount normally -->
+        <script>riot.mount('*', { title: 'Hello world!'})</script>
+    </body>
+</html>

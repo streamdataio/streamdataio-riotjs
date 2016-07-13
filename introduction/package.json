@@ -1,0 +1,14 @@
+{
+  "name": "introduction",
+  "version": "1.0.0",
+  "description": "introduction to riot.js",
+  "homepage": "http://streamdata.io/blog/exploring-riot-js-part1/",
+  "author": "ctranxuan & aneveu (streamdata.io)",
+  "license": "Apache2 License (http://www.apache.org/licenses/LICENSE-2.0)",
+  "scripts": {
+    "serve": "http-server"
+  },
+  "devDependencies": {
+    "http-server": "^0.8.0"
+  }
+}
