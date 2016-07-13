@@ -1,0 +1,29 @@
+{
+  "name": "eventDrivenApp",
+  "version": "1.0.0",
+  "description": "Demo of our event-driven app posts in our series around Riot.js) ",
+  "homepage": "http://streamdata.io/blog/exploring-riot-js-part-3-1/",
+  "main": "index.html",
+  "scripts": {
+    "compile": "riot --type es6 app dist",
+    "watch": "riot -w --type es6 app dist",
+    "browsersync": "browser-sync start --server --files 'dist/*.js, app/*.html' --startPath app",
+    "serve": "parallelshell 'npm run watch' 'npm run browsersync'",
+    "clean": "rimraf dist/"
+  },
+  "author": "ctruanxan & aneveu (streamdata.io)",
+  "license": "Apache2 License (http://www.apache.org/licenses/LICENSE-2.0)",
+  "dependencies": {
+    "babel-core": "^6.10.4",
+    "babel-preset-es2015-riot": "^1.1.0",
+    "bootstrap": "^3.3.6",
+    "d3": "^4.1.1",
+    "riot": "^2.5.0"
+  },
+  "devDependencies": {
+    "babel-plugin-external-helpers-2": "^6.3.13",
+    "browser-sync": "^2.13.0",
+    "parallelshell": "^2.0.0",
+    "rimraf": "^2.5.3"
+  }
+}
