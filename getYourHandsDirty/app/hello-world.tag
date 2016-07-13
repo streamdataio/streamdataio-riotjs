@@ -10,7 +10,7 @@
 
     this.sayHello = (e) => {
       if (this.helloInput.value) {
-        this.message = 'Hello ' + this.helloInput.value + '!';
+        this.message = this.opts.say(this.helloInput.value);
       } else {
         this.message = '';
       }
