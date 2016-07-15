@@ -11,7 +11,7 @@
     "serve": "parallelshell 'npm run watch' 'npm run browsersync'",
     "clean": "rimraf dist/"
   },
-  "author": "ctruanxan & aneveu (streamdata.io)",
+  "author": "ctranxuan & aneveu (streamdata.io)",
   "license": "Apache2 License (http://www.apache.org/licenses/LICENSE-2.0)",
   "dependencies": {
     "babel-core": "^6.10.4",
