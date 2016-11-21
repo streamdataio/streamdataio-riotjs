@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "riot.js stockmarket sample with npm and es6",
   "homepage": "http://streamdata.io/blog/exploring-riot-js-part-3-1/",
+  "main": "main.js",
   "scripts": {
     "compile": "riot --type es6 app dist",
     "watch": "riot -w --type es6 app dist",
@@ -16,7 +17,9 @@
     "babel-preset-es2015-riot": "^1.1.0",
     "bootstrap": "^3.3.7",
     "d3": "^4.4.0",
-    "riot": "^3.0.1"
+    "fast-json-patch": "^1.1.2",
+    "riot": "^3.0.1",
+    "streamdataio-js-sdk": "^1.0.5"
   },
   "devDependencies": {
     "babel-plugin-external-helpers-2": "^6.3.13",

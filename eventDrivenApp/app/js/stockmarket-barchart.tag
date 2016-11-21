@@ -72,5 +72,37 @@
                     })
                     .attr("width", x.bandwidth());
         }
+
+        opts.bus.on('newStocksEvent', function (param) {
+            var data = param.stocks.map(s => {
+                return {'title': s.title, 'price': s.price};
+            });
+
+            updateChart(data, self.chartId, opts.height);
+
+            self.update();
+        });
+
+        function updateChart(data, id = 'chart-1', aHeight = 500) {
+            var margin = {top: 20, right: 30, bottom: 30, left: 40};
+            var height = aHeight - margin.top - margin.bottom;
+            var y = d3.scaleLinear()
+                    .range([height, 0]);
+            y.domain([0, d3.max(data, function (d) {
+                return d.price;
+            })]);
+
+            var chart = d3.select("#" + id);
+            chart.selectAll("rect")
+                    .data(data)
+                    .transition()
+                    .duration(1000)
+                    .attr("y", function (d) {
+                        return y(d.price);
+                    })
+                    .attr("height", function (d) {
+                        return height - y(d.price);
+                    });
+        }
     </script>
 </stockmarket-barchart>
