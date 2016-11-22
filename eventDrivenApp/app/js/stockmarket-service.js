@@ -1,30 +1,30 @@
 'use strict';
 
 class StockMarketService {
-    constructor(bus) {
-        this.bus = bus;
-        this.url = "http://stockmarket.streamdata.io/prices";
-    }
-
-    fetchJson() {
+    constructor(appToken, bus) {
         var self = this;
-        var xhr = new XMLHttpRequest();
+        var url = "http://stockmarket.streamdata.io/prices";
 
-        xhr.onload = function () {
-            var status = xhr.status;
+        this.bus = bus;
+        var streamdata =
+            streamdataio.createEventSource(url, appToken, [], null);
 
-            if (xhr.readyState == 4 && status == 200) {
-                var stocks = JSON.parse(xhr.responseText);
-                self.bus.trigger('newStocksEvent', {stocks: stocks}, true);
+        self.data = [];
 
-            } else {
-                console.error(status);
-                self.bus.trigger('errorStocksEvent', status);
+        streamdata.onData(function (data) {
+            self.data = data;
+            self.bus.trigger('newStocksEvent', {stocks: self.data}, true);
 
-            }
-        };
+        }).onPatch(function (patches) {
+            jsonpatch.apply(self.data, patches);
+            self.bus.trigger('newStocksEvent', {stocks: self.data}, true);
 
-        xhr.open("GET", self.url, true);
-        xhr.send();
+        }).onError(function (error) {
+            console.error(error);
+            self.bus.trigger('errorStocksEvent', error);
+            self.streamdata.close();
+        });
+
+        streamdata.open();
     }
 }

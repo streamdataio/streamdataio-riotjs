@@ -11,7 +11,6 @@
     </head>
     <body>
         <!-- mount point -->
-        <stockmarket-button></stockmarket-button>
         <stockmarket-table></stockmarket-table>
         <stockmarket-barchart height="500" width="960"></stockmarket-barchart>
         <!--<stockmarket-barchart height=300 width=760 chart_id="chart-2"></stockmarket-barchart>-->
@@ -21,17 +20,19 @@
 
         <script src="../node_modules/d3/build/d3.min.js"></script>
 
+        <script src="../node_modules/streamdataio-js-sdk/dist/streamdataio.min.js"></script>
+
+        <script src="../node_modules/fast-json-patch/dist/json-patch-duplex.min.js"></script>
+
         <script src="../app/js/stockmarket-service.js"></script>
-        <script src="../dist/js/stockmarket-button.js"></script>
         <script src="../dist/js/stockmarket-table.js"></script>
         <script src="../dist/js/stockmarket-barchart.js"></script>
 
         <script>
+            var appToken = "your-token";
             var bus = riot.observable();
-            var stockMarketService = new StockMarketService(bus);
+            var stockMarketService = new StockMarketService(appToken, bus);
             var areMounted = false;
-
-            riot.mount('stockmarket-button', {title: 'Load Stocks', stockMarketService: stockMarketService});
 
             bus.on('newStocksEvent', function (param) {
                 if (!areMounted) {
