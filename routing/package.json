@@ -1,0 +1,26 @@
+{
+  "name": "routing",
+  "version": "1.0.0",
+  "description": "riot.js routing sample with npm and es6",
+  "homepage": "http://streamdata.io/blog/exploring-riot-js-part4/",
+  "scripts": {
+    "compile": "riot --type es6 app dist",
+    "watch": "riot -w --type es6 app dist",
+    "browsersync": "browser-sync start --server --files 'dist/*.js, app/*.html' --startPath app",
+    "serve": "parallelshell 'npm run watch' 'npm run browsersync'"
+  },
+  "author": "ctranxuan & aneveu (streamdata.io)",
+  "license": "Apache2 License (http://www.apache.org/licenses/LICENSE-2.0)",
+  "dependencies": {
+    "babel-core": "^6.18.2",
+    "babel-preset-es2015-riot": "^1.1.0",
+    "bootstrap": "^3.3.7",
+    "riot": "^3.0.1",
+    "riot-route": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-plugin-external-helpers-2": "^6.3.13",
+    "browser-sync": "^2.18.2",
+    "parallelshell": "^2.0.0"
+  }
+}

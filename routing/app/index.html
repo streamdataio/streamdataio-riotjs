@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Hello World</title>
+
+        <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="./css/main.css" />
+    </head>
+    <body>
+        <a href="#">Home</a>
+        <a href="#hello" class="btn btn-info">Go to «Hello»</a>
+        <button type="button" class="btn btn-success" onclick="goToBonjour()">Allez sur «Bonjour»</button>
+
+        <!-- mount point -->
+        <div id="content"></div>
+
+        <!-- include riot.js -->
+        <script src="../node_modules/riot/riot.min.js"></script>
+        <!-- include riot route.js -->
+        <script src="../node_modules/riot-route/dist/route.js"></script>
+
+        <script src="../dist/js/home-page.js"></script>
+        <script src="../dist/js/hello-page.js"></script>
+        <script src="../dist/js/bonjour-page.js"></script>
+
+        <!-- mount normally -->
+        <script>
+            function goToBonjour() {
+                route('bonjour');
+            };
+
+            var currentPage = null;
+
+            route(function goTo(path) {
+                if (currentPage) {
+                    currentPage.unmount(true);
+                }
+
+                if (path === 'bonjour' ) {
+                    currentPage = riot.mount('div#content', 'bonjour-page')[0];
+
+                } else if (path === 'hello') {
+                    currentPage = riot.mount('div#content', 'hello-page')[0];
+
+                } else {
+                    currentPage = riot.mount('div#content', 'home-page')[0];
+                }
+            });
+            route.start(true);
+        </script>
+    </body>
+</html>
